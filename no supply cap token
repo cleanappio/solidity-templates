@@ -1,0 +1,29 @@
+pragma solidity ^0.6.12;
+
+contract TrashHash {
+    // Define the token's name, symbol, and total supply
+    string public name = "TrashHash";
+    string public symbol = "HASH";
+    uint256 public totalSupply = 0;
+
+    // Define a mapping to store the balances of individual addresses
+    mapping (address => uint256) public balances;
+
+    // Define the constructor function to initialize the token
+    constructor() public {
+        // Set the total supply of TrashHash tokens to infinity
+        totalSupply = uint256(-1);
+    }
+
+    // Define a function to transfer TrashHash tokens from one address to another
+    function transfer(address to, uint256 tokens) public {
+        // Ensure the sender has sufficient tokens to transfer
+        require(balances[msg.sender] >= tokens, "Insufficient tokens");
+
+        // Decrease the sender's balance by the number of tokens transferred
+        balances[msg.sender] -= tokens;
+
+        // Increase the recipient's balance by the number of tokens transferred
+        balances[to] += tokens;
+    }
+}
