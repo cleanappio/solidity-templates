@@ -1,0 +1,19 @@
+pragma solidity ^0.6.0;
+
+import "https://github.com/OpenZeppelin/openzeppelin-solidity/contracts/token/ERC777/ERC777.sol";
+
+// Create a new contract that inherits from the ERC777 token contract
+contract TrashHash is ERC777 {
+    // Set the name, symbol, and decimals for the token
+    string public name = "TrashHash";
+    string public symbol = "HASH";
+    uint8 public decimals = 18;
+
+    // Set the initial supply of tokens to have no cap
+    uint256 public totalSupply = INFINITE_ALLOWANCE_IN_BASE_UNITS;
+
+    // Initialize the contract with the initial supply of tokens
+    constructor() public {
+        _mint(msg.sender, totalSupply);
+    }
+}
