@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts@5.0.1/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts@5.0.1/token/ERC20/extensions/ERC20Permit.sol";
+import "@openzeppelin/contracts@5.0.1/access/Ownable.sol";
+
+contract CleanAppKITN is ERC20, ERC20Permit, Ownable {
+    constructor(address initialOwner)
+        ERC20("CleanApp KITN", "KITN")
+        ERC20Permit("CleanApp KITN")
+        Ownable(initialOwner)
+    {
+        _mint(msg.sender, 10000000000 * 10 ** decimals());
+    }
+}
+
+// deployed January 2 2023 from 0x29A31e68a5c3b052Ac04A663f1e60a2cf184FF53 on Base Sepolia see https://base-sepolia.blockscout.com/tx/0x02810da4771820c32b2d1c7c9cc1153f09840dcabb6fa83e94c7b35aeb65066c
+// "permit" : Without paying gas, token holders will be able to allow third parties to transfer from their account.
+// "Ownable" : Simple mechanism with a single account authorized for all privileged actions.
+// NOTE : script is non-upgradable
+// To-do : need to verify script on block explorer 
